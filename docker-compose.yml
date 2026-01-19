@@ -1,25 +1,20 @@
 services:
-  app:
+
+  online_shop:
     build:
       context: .
-
-    container_name: "online_App"
+    container_name: online_shop
     ports:
       - "5173:5173"
-    
     restart: always
-
     healthcheck:
-      test: [ "CMD", "curl", "-f","http://localhost:5173"]
-      interval: 30s
+      test: ["CMD", "curl", "-f", "http://localhost:5173/"]
+      interval: 60s
       timeout: 10s
-      retries: 3
+      retries: 5
+    networks:
+      - online_shop
 
-    volumes:
-      - "online_shop:/app/volume/"
-      
-
-volumes:
+networks:
   online_shop:
-
-
+    driver: bridge
