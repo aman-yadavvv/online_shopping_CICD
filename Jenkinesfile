@@ -1,0 +1,33 @@
+pipeline{
+    agent {label "dev-agent"} ;
+
+    stages{
+        stage("clone"){
+            steps{
+                
+            }
+        }
+    }
+    stages{
+        stage("build"){
+            steps{
+                echo " as docker is duilding and then deploying so this step  caj also be niglected"
+            }
+        }
+    }
+    stages{
+        stage("test"){
+            steps{
+                echo "testing"
+            }
+        }
+    }
+    stages{
+        stage("deploy"){
+            steps{
+                
+                sh "docker compose up -d --build online_app"
+            }
+        }
+    }
+}
